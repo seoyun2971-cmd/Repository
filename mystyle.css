@@ -1,0 +1,2463 @@
+@charset "UTF-8";
+
+/* ========================================
+   01. 전체 기본 설정
+======================================== */
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --red: #ed5852;
+    --dark-red: #a71919;
+    --gray: #d9d9d9;
+    --dark-gray: #454545;
+    --content-width: 1330px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+
+    background-color: var(--black);
+    color: var(--white);
+
+    font-family:
+        Pretendard,
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        Arial,
+        sans-serif;
+
+    word-break: keep-all;
+}
+
+/*
+전체 브라우저 화면은 검은색으로 유지하고,
+실제 사이트만 최대 1440px 안에서 가운데 정렬합니다.
+1920px 화면에서는 좌우에 각각 240px의 빈 공간이 생깁니다.
+*/
+
+main,
+.site-footer {
+    width: 100%;
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1,
+h2,
+h3,
+p,
+blockquote {
+    margin-top: 0;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* ========================================
+   02. 메인 헤더
+======================================== */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    height: 720px;
+    overflow: hidden;
+
+    background-color: #000;
+}
+
+/* 헤더 전체 연기 이미지 */
+
+.hero-smoke {
+    --smoke-x: 0px;
+    --smoke-y: 0px;
+    --smoke-scale: 1.05;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+
+    width: 100%;
+    max-width: none;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform:
+        translateX(-50%)
+        translate3d(var(--smoke-x), var(--smoke-y), 0)
+        scale(var(--smoke-scale));
+    transform-origin: center;
+    will-change: transform, opacity;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-smoke {
+        transform: translateX(-50%) scale(1.05);
+    }
+
+    .hero-money {
+        animation: none;
+    }
+}
+
+/* 하단 자연스러운 검은 그라데이션 */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 72%,
+            rgba(0, 0, 0, 0.72) 92%,
+            rgba(0, 0, 0, 1) 100%
+        );
+
+    pointer-events: none;
+}
+
+/* 제목 오른쪽 낚싯바늘 지폐 */
+
+.hero-money {
+    position: absolute;
+    top: 0;
+    right: clamp(0px, 11%, 160px);
+    z-index: 3;
+
+    width: auto;
+    max-width: none;
+    height: 720px;
+
+    transform-origin: 50% 0%;
+    animation: hero-money-sway 6s ease-in-out infinite;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes hero-money-sway {
+    0%, 100% {
+        transform: rotate(-1.2deg);
+    }
+
+    50% {
+        transform: rotate(1.2deg);
+    }
+}
+
+/* 헤더 내부 */
+
+.hero-inner {
+    position: relative;
+    z-index: 4;
+
+    display: flex;
+    align-items: center;
+
+    width: min(1330px, calc(100% - 80px));
+    height: 720px;
+
+    margin: 0 auto;
+}
+
+.hero-text {
+    width: 850px;
+    margin-top: -20px;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
+}
+
+.hero-text h1 {
+    display: inline-block;
+
+    margin: 0 0 12px;
+    padding: 10px 30px 20px 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 59px;
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: -0.055em;
+}
+
+.typing-caret {
+    display: inline-block;
+    width: 4px;
+    height: 0.9em;
+    margin-left: 8px;
+
+    background: #ef5751;
+    vertical-align: -0.05em;
+
+    animation: typing-caret-blink 0.75s steps(1) infinite;
+}
+
+.typing-title.typing-complete .typing-caret {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+@keyframes typing-caret-blink {
+    0%, 48% {
+        opacity: 1;
+    }
+
+    49%, 100% {
+        opacity: 0;
+    }
+}
+
+.hero-text p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.025em;
+}
+
+
+/* ========================================
+   03. 공통 섹션
+======================================== */
+
+.content-section {
+    position: relative;
+    overflow: hidden;
+
+    background-color: #000;
+}
+
+.section-inner {
+    position: relative;
+    z-index: 2;
+
+    width: min(var(--content-width), calc(100% - 80px));
+    margin: 0 auto;
+}
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+
+    margin-bottom: 16px;
+}
+
+.section-heading .section-number {
+    color: #ed6870;
+
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 39px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+.section-subtitle {
+    margin-left: 0;
+
+    color: #e5e5e5;
+
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   03-1. 예산 흐름 인트로
+======================================== */
+
+.section-flow-intro {
+    padding: 96px 0 84px;
+
+    background: #000;
+}
+
+.flow-intro-title {
+    margin: 0 0 58px;
+
+    color: #fff;
+
+    font-size: 39px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+.flow-highlight {
+    color: var(--red);
+}
+
+.flow-timeline {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px;
+
+    padding-top: 32px;
+}
+
+.flow-timeline::before {
+    content: "";
+
+    position: absolute;
+    top: 6px;
+    right: 0;
+    left: 0;
+
+    height: 1.5px;
+
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.flow-step {
+    position: relative;
+}
+
+.flow-dot {
+    position: absolute;
+    top: -32px;
+    left: 0;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+}
+
+.flow-step h3 {
+    margin: 0 0 12px;
+
+    color: #fff;
+
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.flow-step p {
+    margin: 0;
+
+    color: #cfcfcf;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   04. 01 소방예산 출발점
+======================================== */
+
+.section-origin {
+    min-height: 830px;
+    padding: 76px 0 200px;
+
+    background: #000;
+}
+
+.origin-layout {
+    display: grid;
+    grid-template-columns: 47% 53%;
+    align-items: start;
+    gap: 45px;
+
+    margin-top: 34px;
+}
+
+
+/* 원형 그래프 */
+
+.response-chart {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 390px;
+    height: 390px;
+
+    margin: 26px auto 0;
+}
+
+.origin-donut-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+.ring-arc {
+    cursor: pointer;
+
+    transition:
+        stroke-dashoffset 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.28s ease,
+        filter 0.28s ease,
+        stroke-width 0.28s ease;
+    outline: none;
+}
+
+.ring-local {
+    transition-delay: 0.14s, 0s, 0s, 0s;
+}
+
+.response-chart[data-active-target="central"] .ring-central {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+    stroke-width: 54;
+}
+
+.response-chart[data-active-target="central"] .ring-local {
+    opacity: 0.3;
+}
+
+.response-chart[data-active-target="local"] .ring-local {
+    filter: drop-shadow(0 0 14px rgba(237, 88, 82, 0.65));
+    stroke-width: 54;
+}
+
+.response-chart[data-active-target="local"] .ring-central {
+    opacity: 0.3;
+}
+
+.chart-center-info {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 58px;
+
+    text-align: center;
+    transition: opacity 0.28s ease;
+
+    pointer-events: none;
+}
+
+.chart-center-tag {
+    margin-bottom: 8px;
+
+    color: #e0e0e0;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.chart-center-value {
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+}
+
+.response-chart[data-active-target="local"] .chart-center-value {
+    color: var(--red);
+}
+
+
+/* 중앙정부·지방정부 */
+
+.origin-information {
+    padding-top: 24px;
+}
+
+.government-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    margin-bottom: 36px;
+}
+
+.government-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    cursor: pointer;
+    border-radius: 6px;
+    transition:
+        opacity 0.28s ease,
+        transform 0.28s ease;
+    outline: none;
+}
+
+.government-item:hover,
+.government-item:focus-visible,
+.government-item.is-highlighted {
+    transform: translateX(4px);
+}
+
+.government-item.is-dimmed {
+    opacity: 0.4;
+}
+
+.government-item h3 {
+    display: flex;
+    align-items: center;
+
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+}
+
+.government-percent {
+    color: var(--white);
+
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.government-percent.red-percent {
+    color: var(--red);
+}
+
+.government-dot {
+    display: inline-block;
+    align-self: center;
+
+    width: 18px;
+    height: 18px;
+
+    margin-right: 16px;
+
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.gray-dot {
+    background: #ccc;
+}
+
+.red-dot {
+    background: #e4524c;
+}
+
+.government-item p {
+    margin: 0 0 0 34px;
+
+    color: #e0e0e0;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.central-budget-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 20px 24px;
+    border-radius: 4px;
+
+    background: #2f2f2f;
+}
+
+.central-budget-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.central-budget-meta strong {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.central-budget-meta span {
+    color: #bcbcbc;
+    font-size: 12px;
+}
+
+.central-budget-amount {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.origin-summary-note {
+    margin: 34px 0 0;
+
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   05. 02 재정 상태
+======================================== */
+
+.section-finance {
+    position: relative;
+    overflow: visible;
+
+    min-height: 1030px;
+    padding: 42px 0 200px;
+
+    background: #000;
+}
+
+.finance-chart-wrap {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr) 172px;
+    align-items: end;
+    gap: 20px;
+
+    margin: 48px 0 0;
+}
+
+.finance-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 360px;
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.finance-main-chart {
+    min-width: 0;
+}
+
+.budget-chart-stage {
+    position: relative;
+
+    width: 100%;
+    height: 360px;
+
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.budget-chart {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+.budget-line {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.budget-points {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.budget-point {
+    position: absolute;
+    z-index: 2;
+
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+
+    background: #fff;
+    transform-origin: center;
+}
+
+.budget-values {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.budget-value {
+    position: absolute;
+    z-index: 2;
+
+    width: 72px;
+    margin-left: -36px;
+    margin-top: -34px;
+
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.budget-value-last {
+    margin-left: -52px;
+}
+
+.finance-years {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 17px 3px 0 28px;
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.finance-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: end;
+    gap: 28px;
+    width: 171px;
+    margin-bottom: 40px;
+}
+
+.finance-summary-image {
+    display: block;
+    width: 171px;
+    height: 105px;
+    max-width: none;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.finance-description {
+    margin: 76px 0 0;
+
+    color: #e4e4e4;
+
+    font-size: 16px;
+    line-height: 2.1;
+}
+
+.finance-description > strong {
+    display: block;
+
+    margin-bottom: 30px;
+
+    color: #fff;
+}
+
+.finance-description p {
+    margin: 0;
+}
+
+
+/* ========================================
+   06. 03 지역별 격차
+======================================== */
+
+.section-region {
+    position: relative;
+
+    min-height: 920px;
+    padding: 85px 0 210px;
+
+    background: #000;
+}
+
+.section-region .section-inner,
+.section-overseas .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.region-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 44px;
+
+    margin: 26px 0 24px;
+}
+
+.region-tab {
+    padding: 0 4px 10px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+
+    background: transparent;
+    color: #c8c8c8;
+
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.region-tab:hover,
+.region-tab:focus-visible {
+    color: #fff;
+    outline: none;
+}
+
+.region-tab.is-left {
+    color: #fff;
+    border-bottom-color: var(--red);
+}
+
+.region-tab.is-right {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+.region-reset-btn {
+    margin-left: auto;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+
+    background: transparent;
+    color: #ccc;
+
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.region-reset-btn:hover {
+    border-color: #fff;
+    color: #fff;
+}
+
+.region-stage {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px minmax(0, 1fr);
+    align-items: center;
+    gap: 28px;
+
+    min-height: 575px;
+    margin: 12px 0 48px;
+}
+
+.region-connectors {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+.connector-line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition: stroke-dashoffset 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.connector-left {
+    stroke: var(--red);
+}
+
+.connector-right {
+    stroke: #ffffff;
+}
+
+.region-panel {
+    position: relative;
+    z-index: 3;
+}
+
+.region-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin: 0 0 18px;
+}
+
+.region-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.region-legend-item strong {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.region-map-wrap {
+    position: relative;
+    z-index: 2;
+
+    width: 330px;
+    margin: 0 auto;
+}
+
+.region-map-img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    transition:
+        opacity 0.35s ease,
+        filter 0.35s ease;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.region-stage.is-comparing .region-map-img {
+    opacity: 0.62;
+    filter: brightness(0.76);
+}
+
+.map-hotspot {
+    position: absolute;
+    z-index: 3;
+
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    cursor: pointer;
+
+    transform: translate(-50%, -50%);
+}
+
+.map-hotspot::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.map-hotspot:hover::after,
+.map-hotspot:focus-visible::after {
+    opacity: 1;
+    transform: scale(1.3);
+}
+
+.region-pin {
+    position: absolute;
+    z-index: 5;
+
+    width: 28px;
+    height: 38px;
+
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+}
+
+.region-pin svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.55));
+}
+
+.region-compare-card {
+    animation: compare-card-in 0.35s ease;
+}
+
+@keyframes compare-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.compare-region-name {
+    display: inline-block;
+    margin: 0 0 28px;
+
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.region-compare-card.is-left .compare-region-name {
+    color: var(--red);
+}
+
+.region-compare-card.is-right .compare-region-name {
+    color: #fff;
+}
+
+.compare-metric-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.compare-metric-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.compare-metric-row span {
+    color: #f0f0f0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.compare-metric-row strong {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.region-compare-card[hidden],
+.region-pin[hidden],
+.region-reset-btn[hidden] {
+    display: none;
+}
+
+.region-description {
+    margin-left: 0;
+
+    color: #e4e4e4;
+
+    font-size: 16px;
+    line-height: 2.1;
+}
+
+.region-description > strong {
+    display: block;
+
+    margin-bottom: 30px;
+
+    color: #fff;
+}
+
+.region-description p {
+    margin: 0;
+}
+
+
+/* ========================================
+   07. 04 현장의 위험
+======================================== */
+
+.section-danger {
+    position: relative;
+    overflow: visible;
+
+    min-height: 835px;
+    padding: 90px 0 210px;
+
+    background: #000;
+}
+
+.section-danger .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.region-danger-bridge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+.region-danger-bridge img {
+    position: absolute;
+    top: -210px;
+    left: 50%;
+
+    width: 1440px;
+    max-width: none;
+    height: auto;
+
+    opacity: 0.9;
+    mix-blend-mode: screen;
+    transform: translateX(-50%);
+
+    -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        #000 18%,
+        #000 84%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        #000 18%,
+        #000 84%,
+        transparent 100%
+    );
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.danger-headcount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+
+    margin-top: 64px;
+
+    text-align: center;
+}
+
+.danger-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.danger-year {
+    margin-bottom: 10px;
+
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.danger-number {
+    display: block;
+
+    font-size: clamp(58px, 6.2vw, 88px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.red-number {
+    color: #d82520;
+}
+
+.white-number {
+    color: #fff;
+}
+
+.danger-arrow {
+    margin-top: 26px;
+
+    color: #fff;
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.danger-question {
+    margin: 56px 0 0;
+
+    color: #e4e4e4;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.55;
+    text-align: center;
+}
+
+.danger-message {
+    margin: 26px 0 0;
+
+    color: #ddd;
+
+    font-size: 21px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.danger-message strong {
+    color: #fff;
+}
+
+.danger-interactive {
+    max-width: 1040px;
+    margin: 56px auto 0;
+}
+
+.danger-board {
+    display: grid;
+    grid-template-columns: 1fr 310px 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.danger-card-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.danger-topic-btn {
+    width: 100%;
+    padding: 22px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: #f0f0f0;
+
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.danger-topic-btn:hover,
+.danger-topic-btn:focus-visible {
+    border-color: rgba(237, 88, 82, 0.65);
+    color: #fff;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.danger-topic-btn.is-active {
+    border-color: var(--red);
+    background: rgba(237, 88, 82, 0.14);
+    color: #ff6e68;
+}
+
+.danger-figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.danger-firefighter-img {
+    width: 295px;
+    max-width: 100%;
+    height: auto;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.danger-detail-box {
+    margin-top: 38px;
+    padding: 24px 28px;
+    border-radius: 8px;
+
+    background: rgba(237, 88, 82, 0.1);
+}
+
+.danger-detail-box.is-updating {
+    animation: danger-detail-fade 0.28s ease;
+}
+
+@keyframes danger-detail-fade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.danger-detail-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px 18px;
+    margin-bottom: 12px;
+}
+
+.danger-detail-title {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.danger-detail-stat {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.danger-detail-value {
+    color: var(--red);
+
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.danger-detail-label {
+    color: #dfdfdf;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.danger-detail-text {
+    margin: 0;
+
+    color: #dfdfdf;
+
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+
+/* ========================================
+   08. 05 해외 소방관 처우 비교
+======================================== */
+
+.section-overseas {
+    position: relative;
+
+    min-height: 710px;
+    padding: 78px 0 180px;
+
+    background: #000;
+}
+
+.overseas-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 48px;
+}
+
+.overseas-introduction {
+    margin-top: 34px;
+    padding: 0;
+
+    text-align: center;
+}
+
+.overseas-introduction h3 {
+    margin-bottom: 12px;
+
+    color: #fff;
+
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.45;
+    letter-spacing: -0.03em;
+}
+
+.overseas-introduction p {
+    margin: 0;
+
+    color: #9e9e9e;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.venn-diagram {
+    position: relative;
+    width: 600px;
+    height: 420px;
+    margin: 0 auto;
+}
+
+.venn-shape {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 0;
+
+    display: block;
+    width: 600px;
+    height: 380px;
+}
+
+.venn-circle {
+    position: absolute;
+    top: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 220px;
+    height: 380px;
+
+    padding: 20px 14px;
+
+    color: #fff;
+}
+
+.venn-circle h3 {
+    position: absolute;
+    top: -48px;
+
+    width: 380px;
+
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.korea-circle h3 {
+    left: 0;
+}
+
+.foreign-circle h3 {
+    left: -160px;
+    z-index: 3;
+}
+
+.venn-circle p {
+    margin: 0;
+
+    font-size: 13.5px;
+    line-height: 1.7;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.korea-circle {
+    left: 0;
+    z-index: 1;
+
+    background: transparent;
+}
+
+.foreign-circle {
+    left: 380px;
+    z-index: 2;
+
+    background: transparent;
+}
+
+.foreign-circle p {
+    position: relative;
+    z-index: 2;
+}
+
+.venn-overlap {
+    position: absolute;
+    top: 40px;
+    left: 220px;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 160px;
+    height: 380px;
+    padding: 16px;
+
+    color: #fff;
+    text-align: center;
+}
+
+.venn-overlap p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.65;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   09. 06 예산이 바꿀 수 있는 것
+======================================== */
+
+.section-impact {
+    padding: 75px 0 150px;
+
+    background: #000;
+}
+
+.impact-introduction {
+    margin: 24px 0 56px;
+
+    color: #e4e4e4;
+
+    font-size: 21px;
+    line-height: 1.55;
+}
+
+.impact-grid {
+    position: relative;
+    z-index: 3;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 420px));
+    align-items: start;
+    justify-content: center;
+    gap: 28px 56px;
+
+    margin: 0 auto;
+}
+
+.impact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 146px;
+    padding: 24px 32px;
+    border: 0;
+    border-radius: 6px;
+
+    background: #e45750;
+    color: #fff;
+
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        min-height 0.35s ease,
+        padding 0.35s ease,
+        transform 0.28s ease,
+        background-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.impact-card.is-open {
+    min-height: 280px;
+    padding: 34px 32px;
+}
+
+.impact-card:hover,
+.impact-card:focus-visible {
+    background: #ed5f58;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(237, 88, 82, 0.24);
+    outline: none;
+}
+
+.impact-card-top {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-bottom: 0;
+
+    transition:
+        grid-template-rows 0.35s ease,
+        opacity 0.3s ease,
+        margin-bottom 0.35s ease;
+}
+
+.impact-card-top-inner {
+    overflow: hidden;
+}
+
+.impact-card.is-open .impact-card-top {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+.impact-card-en {
+    display: block;
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.impact-card-icon {
+    display: block;
+    width: 92px;
+    height: 92px;
+    object-fit: contain;
+
+    transition: transform 0.28s ease;
+}
+
+.impact-card:hover .impact-card-icon,
+.impact-card.is-open .impact-card-icon {
+    transform: scale(1.06);
+}
+
+.impact-card-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-top: 0;
+
+    transition:
+        grid-template-rows 0.35s ease,
+        opacity 0.3s ease,
+        margin-top 0.35s ease;
+}
+
+.impact-card-body-inner {
+    overflow: hidden;
+}
+
+.impact-card.is-open .impact-card-body {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 22px;
+}
+
+.impact-card-body h3 {
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.impact-card-body p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.final-impact-row {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: 40px;
+
+    margin-top: 28px;
+}
+
+.final-message {
+    margin: 0;
+    padding-left: 18px;
+
+    border-left: 4px solid #ffd0cd;
+
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.final-photo {
+    position: relative;
+    margin-top: -28px;
+    overflow: hidden;
+}
+
+.final-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.final-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.25) 28%,
+            rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 0.65) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0) 78%,
+            rgba(0, 0, 0, 0.92) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   10. 푸터
+======================================== */
+
+.site-footer {
+    padding: 40px 0 90px;
+
+    background: #000;
+}
+
+.footer-inner {
+    width: min(var(--content-width), calc(100% - 80px));
+    margin: 0 auto;
+    padding-left: 0;
+}
+
+.footer-inner p {
+    margin: 0;
+
+    color: #ddd;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   11. 자바스크립트 스크롤 효과
+======================================== */
+
+.scrAni {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.js-enabled .scrAni {
+    opacity: 0;
+    transform: translateY(45px);
+}
+
+.js-enabled .scrAni.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   12. 태블릿 반응형
+======================================== */
+
+@media (max-width: 1000px) {
+    .section-inner {
+        width: calc(100% - 50px);
+    }
+
+    .hero-inner {
+        width: calc(100% - 50px);
+    }
+
+    .hero-money {
+        right: -40px;
+        height: 640px;
+    }
+
+    .origin-layout {
+        grid-template-columns: 42% 58%;
+        gap: 20px;
+    }
+
+    .response-chart {
+        width: 310px;
+        height: 310px;
+        margin: 32px auto 0;
+    }
+
+    .government-list {
+        gap: 24px;
+    }
+
+    .government-item h3 {
+        font-size: 25px;
+    }
+
+    .government-percent {
+        font-size: 22px;
+    }
+
+    .chart-center-value {
+        font-size: 22px;
+    }
+
+    .finance-chart-wrap {
+        grid-template-columns: 70px minmax(0, 1fr);
+        margin-left: 20px;
+    }
+
+    .finance-summary {
+        grid-column: 2;
+        width: 171px;
+    }
+
+    .overseas-layout {
+        grid-template-columns: 30% 70%;
+    }
+
+    .region-tabs {
+        gap: 24px;
+        margin-left: 0;
+    }
+
+    .region-stage {
+        grid-template-columns: minmax(0, 1fr) 255px minmax(0, 1fr);
+        gap: 20px;
+        min-height: 440px;
+        margin-left: 0;
+    }
+
+    .region-map-wrap {
+        width: 255px;
+    }
+
+    .compare-region-name {
+        font-size: 46px;
+    }
+
+    .compare-metric-row span {
+        font-size: 17px;
+    }
+
+    .compare-metric-row strong {
+        font-size: 20px;
+    }
+
+    .region-legend {
+        margin-left: 0;
+    }
+}
+
+
+/* ========================================
+   13. 모바일 반응형
+======================================== */
+
+@media (max-width: 700px) {
+    html,
+    body,
+    main {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    main,
+    .site-footer {
+        max-width: 100%;
+    }
+
+    .section-inner,
+    .footer-inner {
+        width: calc(100% - 36px);
+    }
+
+    /* 모바일 헤더 */
+
+    .hero {
+        height: 620px;
+    }
+
+    .hero-smoke {
+        left: 50%;
+
+        width: 100%;
+        min-width: 100%;
+        height: 620px;
+    }
+
+    .hero-money {
+        top: 0;
+        right: -150px;
+
+        height: 540px;
+
+        opacity: 0.92;
+    }
+
+    .hero-inner {
+        align-items: flex-start;
+
+        width: calc(100% - 36px);
+        height: 620px;
+
+        padding-top: 54px;
+    }
+
+    .hero-text {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hero-text h1 {
+        max-width: 100%;
+        padding: 0 0 10px 0;
+
+        font-size: 25px;
+        line-height: 1.35;
+        letter-spacing: -0.045em;
+    }
+
+    .hero-text p {
+        max-width: 190px;
+
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .hero-text p br {
+        display: none;
+    }
+
+    .typing-caret {
+        width: 3px;
+        margin-left: 4px;
+    }
+
+    /* 공통 제목 */
+
+    .section-heading {
+        gap: 12px;
+    }
+
+    .section-heading .section-number {
+        font-size: 43px;
+    }
+
+    .section-heading h2 {
+        font-size: 24px;
+    }
+
+    .section-subtitle {
+        margin-left: 0;
+    }
+
+    /* 예산 흐름 인트로 */
+
+    .section-flow-intro {
+        padding: 64px 0 48px;
+    }
+
+    .flow-intro-title {
+        margin-bottom: 36px;
+        font-size: 24px;
+    }
+
+    .flow-timeline {
+        grid-template-columns: 1fr;
+        gap: 28px;
+
+        padding-top: 0;
+        padding-left: 26px;
+    }
+
+    .flow-timeline::before {
+        top: 6px;
+        right: auto;
+        bottom: 6px;
+        left: 6px;
+
+        width: 1.5px;
+        height: auto;
+    }
+
+    .flow-dot {
+        top: 6px;
+        left: -26px;
+    }
+
+    .flow-step h3 {
+        font-size: 22px;
+    }
+
+    /* 01 */
+
+    .section-origin,
+    .section-finance,
+    .section-region,
+    .section-danger,
+    .section-overseas,
+    .section-impact {
+        min-height: 0;
+        padding-top: 70px;
+        padding-bottom: 110px;
+    }
+
+    .section-finance {
+        overflow: hidden;
+    }
+
+    .origin-finance-bridge img {
+        top: -180px;
+        width: 760px;
+    }
+
+    .origin-layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .response-chart {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+    }
+
+    .chart-center-tag {
+        font-size: 12px;
+    }
+
+    .chart-center-value {
+        font-size: 20px;
+    }
+
+    .government-list {
+        gap: 24px;
+    }
+
+    .government-item h3 {
+        font-size: 23px;
+    }
+
+    .government-percent {
+        font-size: 21px;
+    }
+
+    .government-item p {
+        margin-left: 34px;
+        font-size: 15px;
+    }
+
+    .central-budget-box {
+        padding: 18px;
+    }
+
+    .central-budget-amount {
+        font-size: 21px;
+    }
+
+    .origin-summary-note {
+        font-size: 15px;
+    }
+
+    /* 02 */
+
+    .finance-chart-wrap {
+        grid-template-columns: 45px minmax(0, 1fr);
+        gap: 10px;
+
+        margin-left: 0;
+    }
+
+    .finance-y-axis,
+    .budget-chart-stage {
+        height: 240px;
+    }
+
+    .budget-line {
+        stroke-width: 3.2;
+    }
+
+    .finance-y-axis {
+        font-size: 12px;
+    }
+
+    .budget-point {
+        width: 10px;
+        height: 10px;
+        margin: -5px 0 0 -5px;
+        border-width: 1.5px;
+    }
+
+    .budget-value {
+        width: 56px;
+        margin-left: -28px;
+        margin-top: -26px;
+
+        font-size: 13px;
+    }
+
+    .budget-value-last {
+        margin-left: -46px;
+    }
+
+    .finance-years {
+        padding: 12px 0 0 10px;
+        font-size: 12px;
+    }
+
+    .finance-summary {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: center;
+        justify-self: stretch;
+        gap: 12px;
+
+        width: 100%;
+        margin: 28px 0 0;
+    }
+
+    .finance-summary-image {
+        width: min(160px, calc(50% - 6px));
+        height: auto;
+    }
+
+    .finance-description,
+    .region-description {
+        margin-left: 0;
+    }
+
+    /* 03 */
+
+    .region-tabs {
+        gap: 12px 18px;
+        margin: 20px 0 28px;
+    }
+
+    .region-tab {
+        font-size: 16px;
+    }
+
+    .region-stage {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        min-height: 0;
+        margin: 0 0 24px;
+    }
+
+    .region-stage.is-comparing {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .region-stage.is-two-comparing {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .region-connectors {
+        display: none;
+    }
+
+    .region-map-wrap {
+        width: 240px;
+    }
+
+    .region-stage.is-comparing .region-map-wrap {
+        grid-column: 1 / -1;
+        order: -1;
+    }
+
+    .region-legend {
+        margin: 0 0 20px;
+    }
+
+    .region-legend-item strong {
+        font-size: 16px;
+    }
+
+    .compare-region-name {
+        margin-bottom: 16px;
+        font-size: 34px;
+    }
+
+    .compare-metric-row {
+        padding: 10px 0;
+    }
+
+    .compare-metric-row span {
+        font-size: 14px;
+    }
+
+    .compare-metric-row strong {
+        font-size: 17px;
+    }
+
+    /* 04 */
+
+    .section-danger {
+        overflow: hidden;
+    }
+
+    .region-danger-bridge img {
+        top: -120px;
+        width: 760px;
+    }
+
+    .danger-headcount {
+        gap: 14px;
+        margin-top: 40px;
+    }
+
+    .danger-year {
+        font-size: 16px;
+    }
+
+    .danger-number {
+        font-size: clamp(32px, 9.5vw, 48px);
+    }
+
+    .danger-arrow {
+        margin-top: 22px;
+        font-size: 20px;
+    }
+
+    .danger-question {
+        margin-top: 38px;
+        font-size: 14px;
+    }
+
+    .danger-message {
+        margin-top: 20px;
+
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .danger-interactive {
+        margin-top: 36px;
+    }
+
+    .danger-board {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .danger-figure {
+        order: -1;
+    }
+
+    .danger-firefighter-img {
+        width: 210px;
+    }
+
+    .danger-card-col {
+        gap: 12px;
+    }
+
+    .danger-topic-btn {
+        padding: 15px 16px;
+        font-size: 16px;
+    }
+
+    .danger-detail-box {
+        margin-top: 24px;
+        padding: 18px 20px;
+    }
+
+    .danger-detail-title {
+        font-size: 19px;
+    }
+
+    .danger-detail-value {
+        font-size: 22px;
+    }
+
+    .danger-detail-label {
+        font-size: 13px;
+    }
+
+    .danger-detail-text {
+        font-size: 14px;
+    }
+
+    /* 05 */
+
+    .overseas-layout {
+        margin-top: 32px;
+    }
+
+    .overseas-introduction {
+        margin-top: 24px;
+        padding: 0;
+
+        text-align: center;
+    }
+
+    .overseas-introduction h3 {
+        font-size: 20px;
+    }
+
+    .venn-diagram {
+        left: 50%;
+        transform: translateX(-50%) scale(0.53);
+        transform-origin: top center;
+        margin-bottom: -185px;
+    }
+
+    /* 06 */
+
+    .impact-introduction {
+        margin-left: 0;
+
+        font-size: 18px;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .impact-card {
+        min-height: 120px;
+        padding: 22px 20px;
+    }
+
+    .impact-card.is-open {
+        min-height: 225px;
+        padding: 28px 20px;
+    }
+
+    .impact-card-en {
+        font-size: 16px;
+    }
+
+    .impact-card-icon {
+        width: 68px;
+        height: 68px;
+    }
+
+    .final-impact-row {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-top: 40px;
+    }
+
+    .final-photo {
+        margin-top: 0;
+    }
+
+    .final-message {
+        margin-left: 0;
+
+        font-size: 18px;
+    }
+
+    /* 푸터 */
+
+    .footer-inner {
+        padding-left: 0;
+    }
+}

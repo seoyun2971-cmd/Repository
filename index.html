@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>국가직 소방 예산</title>
+
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="scrollan.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <!-- 메인 비주얼 -->
+        <header class="hero">
+    <!-- 헤더 전체 연기 배경 -->
+    <img
+        class="hero-smoke"
+        src="icon/01_smoke_bg.jpg"
+        alt=""
+    >
+
+    <!-- 제목 오른쪽 낚싯바늘 지폐 이미지 -->
+    <img
+        class="hero-money"
+        src="icon/01_money_hook.png"
+        alt="낚싯바늘에 걸린 만 원권 지폐"
+    >
+
+    <!-- 왼쪽 제목 -->
+    <div class="hero-inner">
+        <div class="hero-text">
+            <h1 class="typing-title"
+                data-line-one="국가직 소방 예산, 국가가"
+                data-line-two="책임지고 있을까?"
+                aria-label="국가직 소방 예산, 국가가 책임지고 있을까?">
+                국가직 소방 예산, 국가가<br>
+                책임지고 있을까?
+            </h1>
+
+            <p>
+                2026년 소방 예산과 지역별 안전 격차를 데이터로<br>
+                살펴봅시다.
+            </p>
+        </div>
+    </div>
+</header>
+
+        <!-- 예산 흐름 인트로 -->
+        <section class="content-section section-flow-intro scrAni">
+            <div class="section-inner">
+                <h2 class="flow-intro-title">
+                    소방 예산은 <span class="flow-highlight">현장까지</span> 어떻게 이어질까?
+                </h2>
+
+                <div class="flow-timeline">
+                    <article class="flow-step">
+                        <span class="flow-dot" aria-hidden="true"></span>
+                        <h3>예산의 출발점</h3>
+                        <p>중앙과 지방은 예산을 어떻게 나눠 부담할까?</p>
+                    </article>
+
+                    <article class="flow-step">
+                        <span class="flow-dot" aria-hidden="true"></span>
+                        <h3>지역마다 다른 지원</h3>
+                        <p>장비와 근무 여건은 지역별로 어떻게 다를까?</p>
+                    </article>
+
+                    <article class="flow-step">
+                        <span class="flow-dot" aria-hidden="true"></span>
+                        <h3>현장에 닿는 영향</h3>
+                        <p>예산 변화는 장비 교체와 인력 운영에 어떤 영향을 줄까?</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 01 2026년 소방 예산 규모 -->
+        <section class="content-section section-origin scrAni">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>2026년 소방 예산 규모</h2>
+                </div>
+
+                <p class="section-subtitle">
+                    전국 시·도 소방예산의 재원 구성과 소방청 중앙예산
+                </p>
+
+                <div class="origin-layout">
+                    <div class="response-chart" data-active-target="">
+                        <svg
+                            class="origin-donut-svg"
+                            viewBox="0 0 420 420"
+                            role="img"
+                            aria-label="시·도 소방예산 합계 8조 5,967억 원 중 지방정부 부담분 89.3%, 국비 지원 10.7%"
+                        >
+                            <circle
+                                class="ring-track"
+                                cx="210"
+                                cy="210"
+                                r="165"
+                                fill="none"
+                                stroke="#222222"
+                                stroke-width="48"
+                            ></circle>
+
+                            <circle
+                                class="ring-arc ring-local"
+                                data-target="local"
+                                data-percent="89.3"
+                                cx="210"
+                                cy="210"
+                                r="165"
+                                fill="none"
+                                stroke="#e4524c"
+                                stroke-width="48"
+                                stroke-linecap="butt"
+                                transform="rotate(-51.48 210 210)"
+                                tabindex="0"
+                                role="button"
+                                aria-label="지방정부 부담분 89.3%, 7조 6,728억 원"
+                            ></circle>
+
+                            <circle
+                                class="ring-arc ring-central"
+                                data-target="central"
+                                data-percent="10.7"
+                                cx="210"
+                                cy="210"
+                                r="165"
+                                fill="none"
+                                stroke="#cccccc"
+                                stroke-width="48"
+                                stroke-linecap="butt"
+                                transform="rotate(-90 210 210)"
+                                tabindex="0"
+                                role="button"
+                                aria-label="국비 지원 10.7%, 9,239억 원"
+                            ></circle>
+                        </svg>
+
+                        <div class="chart-center-info" aria-live="polite">
+                            <span class="chart-center-tag">시·도 소방예산 합계</span>
+                            <strong class="chart-center-value">8조 5,967억 원</strong>
+                        </div>
+                    </div>
+
+                    <div class="origin-information">
+                        <div class="government-list">
+                            <article
+                                class="government-item local-government"
+                                data-target="local"
+                                tabindex="0"
+                            >
+                                <div class="government-item-main">
+                                    <h3>
+                                        <span class="government-dot red-dot"></span>
+                                        지방정부 부담분
+                                    </h3>
+                                    <p>7조 6,728억 원</p>
+                                </div>
+
+                                <span class="government-percent red-percent">89.3%</span>
+                            </article>
+
+                            <article
+                                class="government-item central-government"
+                                data-target="central"
+                                tabindex="0"
+                            >
+                                <div class="government-item-main">
+                                    <h3>
+                                        <span class="government-dot gray-dot"></span>
+                                        국비 지원
+                                    </h3>
+                                    <p>9,239억 원</p>
+                                </div>
+
+                                <span class="government-percent">10.7%</span>
+                            </article>
+                        </div>
+
+                        <div class="central-budget-box">
+                            <div class="central-budget-meta">
+                                <strong>소방청 중앙 예산</strong>
+                                <span>2026년 최종 예산 · 전년 대비 1.6% 증가</span>
+                            </div>
+
+                            <strong class="central-budget-amount">3,365억 원</strong>
+                        </div>
+
+                        <p class="origin-summary-note">
+                            2026년 전국 시·도 소방예산의 89.3%는 지방정부가 부담합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 재정 상태 -->
+        <section class="content-section section-finance scrAni">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>재정 상태</h2>
+                </div>
+
+                <div class="finance-chart-wrap">
+                    <div class="finance-y-axis">
+                        <span>4,000</span>
+                        <span>3,500</span>
+                        <span>3,000</span>
+                        <span>2,500</span>
+                        <span>2,000</span>
+                    </div>
+
+                    <div class="finance-main-chart">
+                        <div class="budget-chart-stage">
+                            <svg
+                                class="budget-chart"
+                                viewBox="0 0 850 360"
+                                preserveAspectRatio="none"
+                                role="img"
+                                aria-label="2022년부터 2026년까지 소방청 예산 변화"
+                            >
+                                <defs>
+                                    <linearGradient
+                                        id="budgetAreaGradient"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1"
+                                    >
+                                        <stop
+                                            offset="0%"
+                                            stop-color="#ff625c"
+                                            stop-opacity="1"
+                                        ></stop>
+
+                                        <stop
+                                            offset="100%"
+                                            stop-color="#871815"
+                                            stop-opacity="0.85"
+                                        ></stop>
+                                    </linearGradient>
+                                </defs>
+
+                                <path
+                                    class="budget-area"
+                                    d="
+                                        M 50 280
+                                        L 245 145
+                                        L 440 90
+                                        L 635 105
+                                        L 825 95
+                                        L 825 360
+                                        L 50 360
+                                        Z
+                                    "
+                                    fill="url(#budgetAreaGradient)"
+                                ></path>
+
+                                <path
+                                    class="budget-line"
+                                    d="
+                                        M 50 280
+                                        L 245 145
+                                        L 440 90
+                                        L 635 105
+                                        L 825 95
+                                    "
+                                ></path>
+                            </svg>
+
+                            <div class="budget-points" aria-hidden="true">
+                                <span class="budget-point" style="left: 5.882%; top: 77.778%;"></span>
+                                <span class="budget-point" style="left: 28.824%; top: 40.278%;"></span>
+                                <span class="budget-point" style="left: 51.765%; top: 25%;"></span>
+                                <span class="budget-point" style="left: 74.706%; top: 29.167%;"></span>
+                                <span class="budget-point" style="left: 97.059%; top: 26.389%;"></span>
+                            </div>
+
+                            <div class="budget-values" aria-hidden="true">
+                                <span class="budget-value" style="left: 5.882%; top: 77.778%;">2,426</span>
+                                <span class="budget-value" style="left: 28.824%; top: 40.278%;">3,088</span>
+                                <span class="budget-value" style="left: 51.765%; top: 25%;">3,404</span>
+                                <span class="budget-value" style="left: 74.706%; top: 29.167%;">3,311</span>
+                                <span class="budget-value budget-value-last" style="left: 97.059%; top: 26.389%;">3,365</span>
+                            </div>
+                        </div>
+
+                        <div class="finance-years">
+                            <span>2022</span>
+                            <span>2023</span>
+                            <span>2024</span>
+                            <span>2025</span>
+                            <span>2026</span>
+                        </div>
+                    </div>
+
+                    <aside class="finance-summary">
+                        <img class="finance-summary-image" src="icon/02_samp_01.png" alt="">
+                        <img class="finance-summary-image" src="icon/02_samp_01-1.png" alt="">
+                        <div class="summary-card budget-total" hidden>
+                            <span>소방청 예산 규모</span>
+                            <strong>3,365억 원</strong>
+                        </div>
+
+                        <div class="summary-card budget-increase" hidden>
+                            <span>전년 본예산 대비</span>
+                            <strong>+1.6%</strong>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="finance-description">
+                    <strong>
+                        예산은 증가했습니다. 하지만 중요한 것은 총액만이 아닙니다.
+                    </strong>
+
+                    <p>
+                        2026년 소방청 예산은 전년보다 증가했습니다.
+                        그러나 중앙정부의 소방청 예산 증가만으로 전국 소방 현장의
+                        재정 상황을 모두 설명할 수는 없습니다.
+                        실제 현장에서는 중앙 예산과 각 지방정부의 소방예산이
+                        서로 다른 방식으로 사용됩니다.
+                        따라서 예산이 얼마나 증가했는지만이 아니라,
+                        그 돈을 누가 부담하고 어디에 집행하는지 함께 살펴봐야 합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 지역별 처우·장비 격차 -->
+        <section class="content-section section-region scrAni">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>지역별 처우·장비 격차</h2>
+                </div>
+
+                <nav class="region-tabs" aria-label="비교할 지역 선택">
+                    <button type="button" class="region-tab" data-region="seoul">서울</button>
+                    <button type="button" class="region-tab" data-region="gyeonggi">경기</button>
+                    <button type="button" class="region-tab" data-region="incheon">인천</button>
+                    <button type="button" class="region-tab" data-region="gyeongnam">경남</button>
+                    <button type="button" class="region-tab" data-region="gyeongbuk">경북</button>
+                    <button type="button" class="region-tab" data-region="jeonnam">전남</button>
+                    <button type="button" class="region-reset-btn" hidden>전체 지도</button>
+                </nav>
+
+                <div class="region-legend">
+                    <div class="region-legend-item">
+                        <span class="legend-dot red-dot"></span>
+                        <strong>처우 수준</strong>
+                    </div>
+
+                    <div class="region-legend-item">
+                        <span class="legend-dot gray-dot"></span>
+                        <strong>장비 보유율</strong>
+                    </div>
+                </div>
+
+                <div class="region-stage" data-state="idle">
+                    <svg class="region-connectors" aria-hidden="true">
+                        <path class="connector-line connector-left" d=""></path>
+                        <path class="connector-line connector-right" d=""></path>
+                    </svg>
+
+                    <div class="region-panel region-panel-left">
+                        <div class="region-compare-card is-left" hidden>
+                            <h3 class="compare-region-name" data-slot-name="left">서울</h3>
+
+                            <div class="compare-metric-list">
+                                <div class="compare-metric-row">
+                                    <span>장비 보유율</span>
+                                    <strong data-slot-equipment="left">70%</strong>
+                                </div>
+
+                                <div class="compare-metric-row">
+                                    <span>처우 수준</span>
+                                    <strong data-slot-treatment="left">84%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="region-map-wrap">
+                        <img
+                            class="region-map-img"
+                            src="icon/03_korea_map.png"
+                            alt="대한민국 시도별 지도"
+                        >
+
+                        <button type="button" class="map-hotspot" data-region="seoul" style="left: 22%; top: 22.1%;" aria-label="서울 선택"></button>
+                        <button type="button" class="map-hotspot" data-region="gyeonggi" style="left: 34%; top: 27.5%;" aria-label="경기 선택"></button>
+                        <button type="button" class="map-hotspot" data-region="incheon" style="left: 15.6%; top: 22.1%;" aria-label="인천 선택"></button>
+                        <button type="button" class="map-hotspot" data-region="gyeongnam" style="left: 68%; top: 67.2%;" aria-label="경남 선택"></button>
+                        <button type="button" class="map-hotspot" data-region="gyeongbuk" style="left: 75%; top: 47.5%;" aria-label="경북 선택"></button>
+                        <button type="button" class="map-hotspot" data-region="jeonnam" style="left: 25%; top: 75.4%;" aria-label="전남 선택"></button>
+
+                        <div class="region-pin pin-left" aria-hidden="true" hidden>
+                            <svg viewBox="0 0 28 38" width="28" height="38">
+                                <path d="M14 0C6.27 0 0 6.27 0 14c0 9.8 14 24 14 24s14-14.2 14-24C28 6.27 21.73 0 14 0z" fill="#ed5852"></path>
+                                <circle class="pin-head-dot" cx="14" cy="14" r="5" fill="#111111"></circle>
+                            </svg>
+                        </div>
+
+                        <div class="region-pin pin-right" aria-hidden="true" hidden>
+                            <svg viewBox="0 0 28 38" width="28" height="38">
+                                <path d="M14 0C6.27 0 0 6.27 0 14c0 9.8 14 24 14 24s14-14.2 14-24C28 6.27 21.73 0 14 0z" fill="#ffffff"></path>
+                                <circle class="pin-head-dot" cx="14" cy="14" r="5" fill="#111111"></circle>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="region-panel region-panel-right">
+                        <div class="region-compare-card is-right" hidden>
+                            <h3 class="compare-region-name" data-slot-name="right">전남</h3>
+
+                            <div class="compare-metric-list">
+                                <div class="compare-metric-row">
+                                    <span>장비 보유율</span>
+                                    <strong data-slot-equipment="right">21%</strong>
+                                </div>
+
+                                <div class="compare-metric-row">
+                                    <span>처우 수준</span>
+                                    <strong data-slot-treatment="right">14%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="region-description">
+                    <strong>
+                        지역의 재정 차이는 대응 능력의 차이로 이어질 수 있습니다.
+                    </strong>
+
+                    <p>
+                        지역별 소방예산 격차는 장비 교체, 전문교육, 인력 운영,
+                        복지 지원 등 전반적인 재난 대응 능력의 차이로
+                        이어질 수 있습니다.
+                        특히 복합·대형 재난이 증가하는 상황에서 지역별 대응 기반이
+                        개선되지 않으면, 전국적으로 균등한 소방 서비스를
+                        제공하기 어려워질 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 소방공무원 증가와 현장의 위험 -->
+        <section class="content-section section-danger scrAni">
+            <div class="region-danger-bridge" aria-hidden="true">
+                <img src="icon/03_04_smoke.jpg" alt="">
+            </div>
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>소방공무원 증가와 현장의 위험</h2>
+                </div>
+
+                <div class="danger-headcount">
+                    <article class="danger-stat">
+                        <span class="danger-year">2025</span>
+                        <strong
+                            class="danger-number red-number count-number"
+                            data-count="65886"
+                        >
+                            65,886
+                        </strong>
+                    </article>
+
+                    <span class="danger-arrow" aria-hidden="true">→</span>
+
+                    <article class="danger-stat">
+                        <span class="danger-year">2026</span>
+                        <strong
+                            class="danger-number white-number count-number"
+                            data-count="66800"
+                        >
+                            66,800
+                        </strong>
+                    </article>
+                </div>
+
+                <p class="danger-question">
+                    소방공무원은 늘었지만,<br>
+                    현장의 위험도 줄어들었을까요?
+                </p>
+
+                <p class="danger-message">
+                    인력 확충과 함께
+                    <strong>
+                        공무상 사망·부상, 직업성 질환과 정신건강 지표
+                    </strong>를
+                    살펴봅시다.
+                </p>
+
+                <div class="danger-interactive">
+                    <div class="danger-board">
+                        <div class="danger-card-col">
+                            <button
+                                type="button"
+                                class="danger-topic-btn is-active"
+                                data-danger-key="death"
+                                aria-pressed="true"
+                            >
+                                공무상 사망
+                            </button>
+
+                            <button
+                                type="button"
+                                class="danger-topic-btn"
+                                data-danger-key="duty-death"
+                                aria-pressed="false"
+                            >
+                                순직 인정
+                            </button>
+
+                            <button
+                                type="button"
+                                class="danger-topic-btn"
+                                data-danger-key="ptsd"
+                                aria-pressed="false"
+                            >
+                                PTSD·심리 지원
+                            </button>
+                        </div>
+
+                        <div class="danger-figure">
+                            <img
+                                class="danger-firefighter-img"
+                                src="icon/04_firefighter.png"
+                                alt="공기호흡기를 착용한 소방관 실루엣"
+                            >
+                        </div>
+
+                        <div class="danger-card-col">
+                            <button
+                                type="button"
+                                class="danger-topic-btn"
+                                data-danger-key="injury"
+                                aria-pressed="false"
+                            >
+                                공무상 부상
+                            </button>
+
+                            <button
+                                type="button"
+                                class="danger-topic-btn"
+                                data-danger-key="disease"
+                                aria-pressed="false"
+                            >
+                                직업성 질환
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="danger-detail-box" aria-live="polite">
+                        <div class="danger-detail-head">
+                            <h3 class="danger-detail-title">공무상 사망</h3>
+                            <div class="danger-detail-stat">
+                                <strong class="danger-detail-value">35명</strong>
+                                <span class="danger-detail-label">전국 위험직무 순직</span>
+                            </div>
+                        </div>
+                        <p class="danger-detail-text">
+                            위험직무 순직으로 집계된 인원이며 연평균 3.5명입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 해외 소방관 처우 비교 -->
+        <section class="content-section section-overseas scrAni">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>해외 소방관 처우 비교</h2>
+                </div>
+
+                <div class="overseas-layout">
+                    <div class="venn-diagram">
+                        <svg
+                            class="venn-shape"
+                            viewBox="0 0 600 380"
+                            aria-hidden="true"
+                        >
+                            <defs>
+                                <clipPath id="koreaVennClip">
+                                    <circle cx="190" cy="190" r="190"></circle>
+                                </clipPath>
+                            </defs>
+
+                            <circle cx="190" cy="190" r="190" fill="#e6554e"></circle>
+                            <circle cx="410" cy="190" r="190" fill="#4f565b"></circle>
+                            <circle
+                                cx="410"
+                                cy="190"
+                                r="190"
+                                fill="#8e0e08"
+                                clip-path="url(#koreaVennClip)"
+                            ></circle>
+                        </svg>
+
+                        <article class="venn-circle korea-circle">
+                            <h3>한국</h3>
+
+                            <p>
+                                위험근무수당 지급<br>
+                                공무상 부상·질병 치료 지원<br>
+                                위험직무 순직 시<br>
+                                유족연금·보상금
+                            </p>
+                        </article>
+
+                        <div class="venn-overlap">
+                            <p>
+                                직무상 위험보상<br>
+                                부상·장해 시 본인 보호<br>
+                                순직 시 유족 생활 지원
+                            </p>
+                        </div>
+
+                        <article class="venn-circle foreign-circle">
+                            <h3>해외</h3>
+
+                            <p>
+                                미국: 순직/장애 일시금<br>
+                                스코틀랜드: 최저소득 보장<br>
+                                일본: 고위험 재해 가산
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="overseas-introduction">
+                        <h3>
+                            수당부터 사고 이후의 삶까지,<br>
+                            위험에 대한 보호가 필요합니다.
+                        </h3>
+
+                        <p>
+                            해외는 일부 국가·지역의 사례이며,
+                            적용 대상과 지급 요건이 다릅니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 예산이 바꿀 수 있는 것 -->
+        <section class="content-section section-impact scrAni">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2>예산이 바꿀 수 있는 것</h2>
+                </div>
+
+                <p class="impact-introduction">
+                    돈으로 모든 문제를 해결할 수는 없습니다.<br>
+                    그러나 돈으로 해결해야 하는 문제는 분명히 있습니다.
+                </p>
+
+                <div class="impact-grid">
+                    <button type="button" class="impact-card" aria-expanded="false">
+                        <div class="impact-card-top">
+                            <div class="impact-card-top-inner">
+                                <span class="impact-card-en">Safe Equipment</span>
+                            </div>
+                        </div>
+                        <img class="impact-card-icon" src="icon/Group 13.png" alt="안전한 장비 아이콘">
+                        <div class="impact-card-body">
+                            <div class="impact-card-body-inner">
+                                <h3>안전한 장비</h3>
+                                <p>
+                                    노후 장비를 적기에 교체하고<br>
+                                    현장 위험에 맞는 보호장비를 지급합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button type="button" class="impact-card" aria-expanded="false">
+                        <div class="impact-card-top">
+                            <div class="impact-card-top-inner">
+                                <span class="impact-card-en">Adequate education</span>
+                            </div>
+                        </div>
+                        <img class="impact-card-icon" src="icon/Group 14.png" alt="충분한 교육 아이콘">
+                        <div class="impact-card-body">
+                            <div class="impact-card-body-inner">
+                                <h3>충분한 교육</h3>
+                                <p>
+                                    복합·특수재난에 대비할 수 있도록<br>
+                                    전문교육과 반복훈련을 확대합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button type="button" class="impact-card" aria-expanded="false">
+                        <div class="impact-card-top">
+                            <div class="impact-card-top-inner">
+                                <span class="impact-card-en">Stable workforce management</span>
+                            </div>
+                        </div>
+                        <img class="impact-card-icon" src="icon/Group 15.png" alt="안정적인 인력 운영 아이콘">
+                        <div class="impact-card-body">
+                            <div class="impact-card-body-inner">
+                                <h3>안정적인 인력 운영</h3>
+                                <p>
+                                    출동 인력을 충분히 확보하고 과도한<br>
+                                    업무와 교대근무 부담을 줄입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button type="button" class="impact-card" aria-expanded="false">
+                        <div class="impact-card-top">
+                            <div class="impact-card-top-inner">
+                                <span class="impact-card-en">Recovery and Welfare Support</span>
+                            </div>
+                        </div>
+                        <img class="impact-card-icon" src="icon/Group 16.png" alt="회복과 복지 지원 아이콘">
+                        <div class="impact-card-body">
+                            <div class="impact-card-body-inner">
+                                <h3>회복과 복지 지원</h3>
+                                <p>
+                                    신체적 부상뿐 아니라 PTSD와 직업성<br>
+                                    질환까지 장기적으로 관리합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="final-impact-row">
+                    <blockquote class="final-message">
+                        예산은 숫자로 시작하지만,<br>
+                        결국 소방관의 생명과 국민의 안전으로 돌아옵니다.
+                    </blockquote>
+
+                    <div class="final-photo">
+                        <img
+                            src="icon/06_firefighter_bottom.jpg"
+                            alt="현장에서 휴식을 취하고 있는 소방관"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>@2026 HKNU Digital Publishing 2</p>
+
+            <p>
+                본 웹사이트는 한경국립대학교 디자인학과
+                2026년 디지털퍼블리싱2 수업에서 과제의 일환으로
+                디자인한 것입니다.
+            </p>
+
+            <p>
+                한경국립대학교 시각미디어디자인
+                2023820051 손지연 · 2026910139 이서윤
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
